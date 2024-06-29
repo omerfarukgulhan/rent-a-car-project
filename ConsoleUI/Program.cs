@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using System;
 
 namespace ConsoleUI
 {
@@ -6,7 +11,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IColorService colorService = new ColorManager(new EfColorDal());
+
+            var colors = colorService.GetAll();
+
+            foreach (var color in colors.Data)
+            {
+                Console.WriteLine(color.Name);
+            }
         }
     }
 }
