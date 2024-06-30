@@ -31,5 +31,12 @@ namespace Business.Constants
         public static string BrandDeleted = "Brand deleted";
         public static string BrandUpdated = "Brand updated";
         public static string BrandNotFound = "Brand not found";
+
+        public static string CarsFetched = "Cars fetched";
+        public static string CarFetched = "Car fetched";
+        public static string CarAdded = "Car added";
+        public static string CarDeleted = "Car deleted";
+        public static string CarUpdated = "Car updated";
+        public static string CarNotFound = "Car not found";
     }
 }
