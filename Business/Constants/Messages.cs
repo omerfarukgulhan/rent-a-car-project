@@ -24,5 +24,12 @@ namespace Business.Constants
         public static string ColorDeleted = "Color deleted";
         public static string ColorUpdated = "Color updated";
         public static string ColorNotFound = "Color not found";
+
+        public static string BrandsFetched = "Brands fetched";
+        public static string BrandFetched = "Brand fetched";
+        public static string BrandAdded = "Brand added";
+        public static string BrandDeleted = "Brand deleted";
+        public static string BrandUpdated = "Brand updated";
+        public static string BrandNotFound = "Brand not found";
     }
 }

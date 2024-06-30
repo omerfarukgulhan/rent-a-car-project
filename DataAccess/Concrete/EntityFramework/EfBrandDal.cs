@@ -8,16 +8,16 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfColorDal : EfEntityRepositoryBase<Color, RentACarContext>, IColorDal
+    public class EfBrandDal : EfEntityRepositoryBase<Brand, RentACarContext>, IBrandDal
     {
-        public void DeleteById(int colorId)
+        public void DeleteById(int brandId)
         {
             using (RentACarContext context = new RentACarContext())
             {
-                var color = context.Colors.SingleOrDefault(c => c.Id == colorId);
-                if (color != null)
+                var brand = context.Brands.SingleOrDefault(b => b.Id == brandId);
+                if (brand != null)
                 {
-                    context.Colors.Remove(color);
+                    context.Brands.Remove(brand);
                     context.SaveChanges();
                 }
             }
