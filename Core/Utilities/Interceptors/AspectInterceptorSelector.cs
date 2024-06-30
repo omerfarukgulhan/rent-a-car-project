@@ -7,7 +7,6 @@ using System.Text;
 
 namespace Core.Utilities.Interceptors
 {
-
     public class AspectInterceptorSelector : IInterceptorSelector
     {
         public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
@@ -21,5 +20,4 @@ namespace Core.Utilities.Interceptors
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }
     }
-
 }

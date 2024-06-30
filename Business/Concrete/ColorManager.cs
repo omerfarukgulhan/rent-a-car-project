@@ -19,7 +19,6 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-
         [SecuredOperation("admin")]
         public IResult Add(Color color)
         {
@@ -27,29 +26,35 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorAdded);
         }
 
+        [SecuredOperation("admin")]
         public IResult Delete(Color color)
         {
-            throw new NotImplementedException();
+            _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
+        [SecuredOperation("admin")]
         public IResult DeleteById(int colorId)
         {
-            throw new NotImplementedException();
+            _colorDal.DeleteById(colorId);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsFetched);
         }
 
         public IDataResult<Color> GetById(int colorId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId), Messages.ColorFetched);
         }
 
+        [SecuredOperation("admin")]
         public IResult Update(Color color)
         {
-            throw new NotImplementedException();
+            _colorDal.Update(color);
+            return new SuccessResult(Messages.ColorUpdated);
         }
     }
 }

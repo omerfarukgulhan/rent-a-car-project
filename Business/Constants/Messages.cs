@@ -18,8 +18,11 @@ namespace Business.Constants
         public static string LoginSuccessful = "Login successful";
         public static string AuthorizationDenied = "You do not have authorization for this action";
 
-
-        public static string ColorsListed = "Colors listed";
+        public static string ColorsFetched = "Colors fetched";
+        public static string ColorFetched = "Color fetched";
         public static string ColorAdded = "Color added";
+        public static string ColorDeleted = "Color deleted";
+        public static string ColorUpdated = "Color updated";
+        public static string ColorNotFound = "Color not found";
     }
 }
