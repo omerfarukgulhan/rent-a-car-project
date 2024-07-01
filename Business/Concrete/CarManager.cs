@@ -50,7 +50,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsFetched);
         }
 
-        public IDataResult<List<CarDetailDto>> GetAllCarDetails()
+        public IDataResult<List<CarDetailDto>> GetAllCarsDetail()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetail(), Messages.CarsFetched);
         }

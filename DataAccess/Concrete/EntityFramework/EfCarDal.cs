@@ -45,7 +45,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<CarDetailDto> GetCarsDetail(Expression<Func<CarDetailDto, bool>> filter = null)
+        public List<CarDetailDto> GetCarsDetail()
         {
             using (RentACarContext context = new RentACarContext())
             {
@@ -61,7 +61,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice
                              };
-                return filter == null ? result.ToList() : result.Where(filter).ToList();
+                return result.ToList();
             }
         }
     }

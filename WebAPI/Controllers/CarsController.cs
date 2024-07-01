@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         [HttpGet("details")]
         public IActionResult GetAllCarDetails()
         {
-            var result = _carService.GetAllCarDetails();
+            var result = _carService.GetAllCarsDetail();
             if (result.Success)
             {
                 return Ok(result);

@@ -18,6 +18,8 @@ namespace Business.Constants
         public static string LoginSuccessful = "Login successful";
         public static string AuthorizationDenied = "You do not have authorization for this action";
 
+        public static string InvalidTime = "Invalid time";
+
         public static string ColorsFetched = "Colors fetched";
         public static string ColorFetched = "Color fetched";
         public static string ColorAdded = "Color added";
@@ -38,5 +40,14 @@ namespace Business.Constants
         public static string CarDeleted = "Car deleted";
         public static string CarUpdated = "Car updated";
         public static string CarNotFound = "Car not found";
+
+        public static string RentalsFetched = "Rentals fetched";
+        public static string RentalFetched = "Rental fetched";
+        public static string RentalAdded = "Rental added";
+        public static string RentalDeleted = "Rental deleted";
+        public static string RentalUpdated = "Rental updated";
+        public static string RentalNotFound = "Rental not found";
+        public static string RentalCompleted = "Rental completed";
+        public static string RentalAlreadyCompleted = "Rental already completed";
     }
 }
