@@ -19,6 +19,7 @@ namespace Business.Constants
         public static string AuthorizationDenied = "You do not have authorization for this action";
 
         public static string InvalidTime = "Invalid time";
+        public static string NoObjectWithThisId = "No object with this id";
 
         public static string ColorsFetched = "Colors fetched";
         public static string ColorFetched = "Color fetched";
