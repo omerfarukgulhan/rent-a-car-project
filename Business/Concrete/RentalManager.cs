@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -19,6 +20,7 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
+        [SecuredOperation("user")]
         public IResult Add(Rental rental)
         {
             IResult result = BusinessRules.Run(IsDateValid(rental.RentDate));
@@ -32,6 +34,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalAdded);
         }
 
+        [SecuredOperation("user")]
         public IResult Complete(int rentalId)
         {
             IResult result = BusinessRules.Run(IsRentalCompleted(rentalId));
@@ -47,22 +50,26 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalCompleted);
         }
 
+        [SecuredOperation("user")]
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalDeleted);
         }
 
+        [SecuredOperation("admin")]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsFetched);
         }
 
+        [SecuredOperation("user")]
         public IDataResult<Rental> GetById(int rentalId)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId), Messages.RentalFetched);
         }
 
+        [SecuredOperation("user")]
         public IResult Update(Rental rental)
         {
             IResult result = BusinessRules.Run(IsDateValid(rental.RentDate));
