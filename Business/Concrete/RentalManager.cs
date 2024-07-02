@@ -27,20 +27,23 @@ namespace Business.Concrete
                 return result;
             }
 
+            rental.ReturnDate = null;
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Complete(int rentalId)
         {
-            Rental rentalToComplete = _rentalDal.Get(r => r.Id == rentalId);
-            if (rentalToComplete.ReturnDate == null)
+            IResult result = BusinessRules.Run(IsRentalCompleted(rentalId));
+            if (result != null)
             {
-                return new ErrorResult(Messages.RentalAlreadyCompleted);
+                return result;
             }
-            rentalToComplete.ReturnDate = null;
-            _rentalDal.Update(rentalToComplete);
 
+            Rental rental = _rentalDal.Get(r => r.Id == rentalId);
+
+            rental.ReturnDate = DateTime.Now;
+            _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalCompleted);
         }
 
@@ -60,19 +63,15 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId), Messages.RentalFetched);
         }
 
-        public IResult UpdateRentDate(int rentalId, long updateTime)
+        public IResult Update(Rental rental)
         {
-            DateTime dateToUpdate = DateTimeOffset.FromUnixTimeSeconds(updateTime).UtcDateTime;
-
-            IResult result = BusinessRules.Run(IsDateValid(dateToUpdate));
+            IResult result = BusinessRules.Run(IsDateValid(rental.RentDate));
             if (result != null)
             {
                 return result;
             }
 
-            Rental rentalToUpdate = _rentalDal.Get(r => r.Id == rentalId);
-            rentalToUpdate.ReturnDate = dateToUpdate;
-            _rentalDal.Update(rentalToUpdate);
+            _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
 
@@ -86,14 +85,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        private IResult CheckIfCarAvailableForRent(int rentalId)
+        private IResult IsRentalCompleted(int rentalId)
         {
-            Rental completedRental = _rentalDal.Get(r => r.Id == rentalId);
-            if (completedRental.ReturnDate == null)
+            Rental rental = _rentalDal.Get(r => r.Id == rentalId);
+            if (rental.ReturnDate != null)
             {
                 return new ErrorResult(Messages.RentalAlreadyCompleted);
             }
-            completedRental.ReturnDate = null;
             return new SuccessResult();
         }
     }

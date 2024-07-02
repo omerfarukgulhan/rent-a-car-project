@@ -12,7 +12,7 @@ namespace Business.Abstract
         IDataResult<Rental> GetById(int rentalId);
         IResult Add(Rental rental);
         IResult Complete(int rentalId);
-        IResult UpdateRentDate(int rentalId, long updateTime);
+        IResult Update(Rental rental);
         IResult Delete(Rental rental);
     }
 }

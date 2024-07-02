@@ -60,10 +60,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut("{rentalId}/{updateTime}")]
-        public IActionResult Update(int rentalId, long updateTime)
+        [HttpPut]
+        public IActionResult Update(Rental rental)
         {
-            var result = _rentalService.UpdateRentDate(rentalId, updateTime);
+            var result = _rentalService.Update(rental);
             if (result.Success)
             {
                 return Ok(result);
